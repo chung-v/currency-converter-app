@@ -14,8 +14,7 @@ export default function Home() {
             try {
                 const response = await axios.get("https://api.fxratesapi.com/latest", {
                     params: {
-                        api_key: "fxr_live_88b9fdc4d35418374f9ab8d683ac672fb4aa",
-                        amount: 1,
+                        api_key: "fxr_live_88b9fdc4d35418374f9ab8d683ac672fb4aa"
                     },
                 });
                 const rates = response.data.rates;
@@ -81,9 +80,15 @@ export default function Home() {
             <div>
                 <label>Amount: </label>
                 <input
-                    type="number"
+                    type="text"
                     value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
+                    onChange={(e) => {
+                        // Allow only numbers and decimal points
+                        const newValue = e.target.value;
+                        if (/^\d*\.?\d*$/.test(newValue)) {
+                            setAmount(newValue);
+                        }
+                    }}
                     placeholder="Enter amount"
                 />
             </div>
