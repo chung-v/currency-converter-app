@@ -14,7 +14,7 @@ export default function Home() {
             try {
                 const response = await axios.get("https://api.fxratesapi.com/latest", {
                     params: {
-                        api_key: "fxr_live_88b9fdc4d35418374f9ab8d683ac672fb4aa"
+                        api_key: import.meta.env.VITE_API_KEY
                     },
                 });
                 const rates = response.data.rates;
@@ -34,7 +34,7 @@ export default function Home() {
             try {
                 const response = await axios.get("https://api.fxratesapi.com/convert", {
                     params: {
-                        api_key: "fxr_live_88b9fdc4d35418374f9ab8d683ac672fb4aa",
+                        api_key: import.meta.env.VITE_API_KEY,
                         from: fromCurrency,
                         to: toCurrency,
                         amount,
